@@ -1,0 +1,80 @@
+l
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ time ./jarvis < b_big.in > /dev/null
+
+real  0m2.108s
+user  0m2.104s
+sys 0m0.000s
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ time ./jarvis < d_big.in > /dev/null
+
+real  0m0.009s
+user  0m0.000s
+sys 0m0.008s
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ time ./graham < b_big.in > /dev/null
+
+real  0m0.022s
+user  0m0.020s
+sys 0m0.000s
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ time ./graham < d_big.in > /dev/null
+
+real  0m0.013s
+user  0m0.012s
+sys 0m0.000s
+
+
+
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./graham < a_big.in | wc -l
+23
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./jarvis < a_big.in | wc -l
+23
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./jarvis < b_big.in | wc -l
+10001
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./graham < b_big.in | wc -l
+10001
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./jarvis < c_big.in | wc -l
+9
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./graham < c_big.in | wc -l
+10
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./jarvis < d_big.in | wc -l
+5
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./graham < d_big.in | wc -l
+5
+
+
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./jarvis < a.in | wc -l
+13
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./jarvis < b.in | wc -l
+101
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./jarvis < c.in | wc -l
+9
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./jarvis < d.in | wc -l
+5
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./graham < a.in | wc -l
+13
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./graham < b.in | wc -l
+101
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./graham < c.in | wc -l
+10
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ ./graham < d.in | wc -l
+5
+
+
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ time ./jarvis < c_big.in > /dev/null
+
+real  0m0.087s
+user  0m0.084s
+sys 0m0.000s
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ time ./graham < c_big.in > /dev/null
+
+real  0m0.124s
+user  0m0.116s
+sys 0m0.004s
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ time ./graham < a_big.in > /dev/null
+
+real  0m0.156s
+user  0m0.148s
+sys 0m0.004s
+(geo)mequrel@mequrel-VirtualBox:~/Geometria/lab2$ time ./jarvis < a_big.in > /dev/null
+
+real  0m0.159s
+user  0m0.156s
+sys 0m0.000s
