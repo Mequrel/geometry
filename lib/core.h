@@ -1,7 +1,8 @@
 #ifndef CORE_H
 #define CORE_H
 
-#include <algorithm>  // TODO: localize std::pair!
+#include <utility>
+#include <vector>
 
 namespace geo { namespace core {
 
@@ -27,7 +28,7 @@ bool operator!=(const Point& a, const Point& b);
 typedef std::pair<Point, Point> Vector;
 typedef std::pair<Point, Point> Segment;
 typedef std::pair<Segment, Segment> SegmentPair;
-  
+typedef std::vector<Point> Polygon;
 
 enum Orientation {
   LEFT, STRAIGHT, RIGHT

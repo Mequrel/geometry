@@ -7,6 +7,7 @@
 namespace geo { namespace util {
 
   std::vector<core::Segment> load_segments();
+  core::Polygon load_polygon();
 
 // class PrimitivesParser {
 // public:

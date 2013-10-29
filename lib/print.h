@@ -11,6 +11,8 @@ std::string to_printable(const std::vector<geo::core::SegmentPair>);
 std::string to_printable(const geo::core::SegmentPair);
 std::string to_printable(const geo::core::Segment segment);
 std::string to_printable(const geo::core::Point point);
+std::string to_printable(const std::vector<geo::core::Polygon> polygons);
+std::string to_printable(const geo::core::Polygon polygon);
 
 }}
 
