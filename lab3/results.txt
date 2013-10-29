@@ -1,0 +1,24 @@
+mequrel@mequrel-VirtualBox:~/Geometria/lab3$ time ./lab3 SH < small_k.in > /dev/null
+
+real  0m0.055s
+user  0m0.048s
+sys 0m0.004s
+mequrel@mequrel-VirtualBox:~/Geometria/lab3$ time ./lab3 brute < small_k.in > /dev/null
+
+real  0m1.057s
+user  0m1.056s
+sys 0m0.000s
+
+
+
+
+mequrel@mequrel-VirtualBox:~/Geometria/lab3$ time ./lab3 brute < test_big.in > /dev/null
+
+real  0m2.294s
+user  0m2.272s
+sys 0m0.024s
+mequrel@mequrel-VirtualBox:~/Geometria/lab3$ time ./lab3 SH < test_big.in > /dev/null
+
+real  0m4.877s
+user  0m4.828s
+sys 0m0.044s

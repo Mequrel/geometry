@@ -184,6 +184,15 @@ bool is_already_in(set<pair<int, int> >& intersections, pair<int, int> segment_p
 }
 
 vector<core::SegmentPair> algo::get_intersections_with_shamos_hoey(vector<core::Segment> segments) {
+  // make sure that start of segment is more to the left
+  for(int i=0; i<segments.size(); ++i) {
+    core::Segment& segment = segments[i];
+
+    if(segment.first.x > segment.second.x) {
+      swap(segment.first, segment.second);
+    }
+  }
+
   set<pair<int, int> > intersections;
 
   priority_queue<SweepEvent> sweep_events;
@@ -193,7 +202,9 @@ vector<core::SegmentPair> algo::get_intersections_with_shamos_hoey(vector<core::
   SweepState sweep_state(SweepComparator(sweep_position, segments));
 
   while(!sweep_events.empty()) {
+    //print_set(sweep_state);
     SweepEvent event = sweep_events.top(); sweep_events.pop();
+    //cout << event.type << " " << util::to_printable(event.point) << endl;
     sweep_position.set_sweep_x_position(event.point.x);
 
     std::vector<pair<int, int> > new_neighbours;

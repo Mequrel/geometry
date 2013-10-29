@@ -25,7 +25,7 @@ string to_printable(const vector<core::SegmentPair> segment_pairs) {
 // TODO: use boost::format
 string to_printable(const core::SegmentPair segment_pair) {
   char buffer[100];
-  sprintf(buffer, "[%s] - [%s]",
+  sprintf(buffer, "%s %s",
           util::to_printable(segment_pair.first).c_str(),
           util::to_printable(segment_pair.second).c_str());
   return string(buffer);
@@ -33,7 +33,7 @@ string to_printable(const core::SegmentPair segment_pair) {
 
 string to_printable(const core::Segment segment) {
   char buffer[100];
-  sprintf(buffer, "(%s) - (%s)",
+  sprintf(buffer, "%s %s",
           util::to_printable(segment.first).c_str(),
           util::to_printable(segment.second).c_str());
 
