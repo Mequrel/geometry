@@ -61,11 +61,16 @@ string to_printable(const vector<Polygon> polygons) {
 string to_printable(const Polygon polygon) {
   stringstream result;
 
+  //result << (polygon.size() + 1) << endl;
   result << polygon.size() << endl;
   // TODO(mequrel): change to foreach
   for(int i=0; i<polygon.size(); ++i) {
     result << util::to_printable(polygon[i]) << endl;
   }
+
+  //if(polygon.size() > 0) {
+  //  result << util::to_printable(polygon[0]) << endl;
+  //}
 
   return result.str();
 }
