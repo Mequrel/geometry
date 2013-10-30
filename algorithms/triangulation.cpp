@@ -1,14 +1,16 @@
 //#include "triangulation.h"
 #include "../lib/core.h"
 #include <algorithm>
+#include <stack>
 #include <vector>
 
-using std::vector;
-using std::sort;
 using geo::core::Point;
 using geo::core::Polygon;
-using std::pair;
 using std::make_pair;
+using std::pair;
+using std::sort;
+using std::stack;
+using std::vector;
 
 namespace geo { namespace algo {
 
@@ -108,11 +110,48 @@ vector<pair<Point, PolygonPart> > divide_points_from_monotonic_polygon(const Pol
   return result;
 }
 
+typedef pair<Point, PolygonPart> DividedPoint;
+
+Polygon make_triange(Point a, Point b, Point c) {
+  Polygon triangle;
+  triangle.push_back(a);
+  triangle.push_back(b);
+  triangle.push_back(c);
+  return triangle;
+}
+
 vector<Polygon> triangulate_y_monotonic(const Polygon& polygon) {
   vector<Polygon> triangles;
 
-  vector<pair<Point, PolygonPart> > points = divide_points_from_monotonic_polygon(polygon);
+  vector<DividedPoint> points = divide_points_from_monotonic_polygon(polygon);
   sort(points.begin(), points.end(), higher_y_than_lower_x());
+
+  stack<DividedPoint> points_stack;
+  points_stack.push(points[0], points[1]);
+
+  for(int i=3; i<points.size(); ++i) {
+    DividedPoint& dpoint = points[i];
+
+
+    DividedPoint top = points_stack.top();
+    if (dpoint.second != top.second) {
+      vector<pair<Point, Point> > pairs = get_pairs_from_stack(points_stack);
+      for(int i=0; i<pairs.size(); ++i) {
+        triangles.push_back(make_triangle(
+            dpoint.first, pairs[i].first, pairs[i].second));
+      }
+      while(!points_stack.empty()) {
+        points_stack.pop();
+      }
+
+      points_stack.push(top);
+      points_stack.push(dpoint);
+    }
+    else {
+      // test na to czy jest w wierzcholku
+    }
+  }
+
 
   Polygon res;
   for(int i=0; i<points.size(); ++i) {
