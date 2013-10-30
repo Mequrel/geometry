@@ -7,6 +7,8 @@ using std::vector;
 using std::sort;
 using geo::core::Point;
 using geo::core::Polygon;
+using std::pair;
+using std::make_pair;
 
 namespace geo { namespace algo {
 
@@ -69,19 +71,59 @@ bool is_y_monotonic(const Polygon& polygon) {
   return are_monotonic_paths_crossed(left_count, right_count, polygon.size());
 }
 
+enum PolygonPart {
+  LEFT=1, RIGHT
+};
+
 struct higher_y_than_lower_x {
-  bool operator()(const Point& a, const Point& b) {
-    return a.y > b.y || (a.y == b.y && a.x < b.x);
+  bool operator()(const pair<Point, PolygonPart>& a, const pair<Point, PolygonPart>& b) {
+    return a.first.y > b.first.y || (a.first.y == b.first.y && a.first.x < b.first.x);
   }
 };
+
+
+vector<pair<Point, PolygonPart> > divide_points_from_monotonic_polygon(const Polygon& polygon) {
+  vector<pair<Point, PolygonPart> > result;
+
+  int highest_y_point_index = find_highest_y_point_index(polygon);
+  int current_index = highest_y_point_index;
+
+  Point current_lowest = polygon[current_index];
+  result.push_back(make_pair(current_lowest, LEFT));  
+  current_index = (current_index+1) % polygon.size();
+  Point next_point = polygon[current_index];   // iterate counterclockwise;
+
+  while(is_below_or_same_y(next_point, current_lowest)) {
+    current_lowest = next_point;
+    result.push_back(make_pair(current_lowest, LEFT));
+    current_index = (current_index+1) % polygon.size();
+    next_point = polygon[current_index];
+  }
+
+  while(current_index != highest_y_point_index) {
+    result.push_back(make_pair(polygon[current_index], RIGHT));
+    current_index = (current_index+1) % polygon.size();
+  }
+
+  return result;
+}
 
 vector<Polygon> triangulate_y_monotonic(const Polygon& polygon) {
   vector<Polygon> triangles;
 
-  vector<Point> polygon_points(polygon);
-  sort(polygon_points.begin(), polygon_points.end(), higher_y_than_lower_x());
+  vector<pair<Point, PolygonPart> > points = divide_points_from_monotonic_polygon(polygon);
+  sort(points.begin(), points.end(), higher_y_than_lower_x());
 
-  triangles.push_back(polygon_points);  
+  Polygon res;
+  for(int i=0; i<points.size(); ++i) {
+    if(points[i].second == RIGHT) {
+      points[i].first.y *= -1.0f;
+    }
+
+    res.push_back(points[i].first);
+  }
+
+  triangles.push_back(res);  
 
   return triangles;
 }
