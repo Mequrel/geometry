@@ -1,6 +1,7 @@
 #include "../lib/parser.h"
 #include "../lib/print.h"
-#include "../algorithms/triangulation.h"
+//#include "../algorithms/triangulation.h"
+#include "../algorithms/triangulation.cpp"
 #include <iostream>
 
 using namespace std;
@@ -11,7 +12,7 @@ int main(int argc, char const *argv[]) {
     core::Polygon polygon = util::load_polygon();
 
     if(!algo::is_y_monotonic(polygon)) {
-      cout << "Polygon is not y monotonic. Cannot triangulate.";
+      cout << "Polygon is not y monotonic. Cannot triangulate." << endl;
       return 0;
     }
 
