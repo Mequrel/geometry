@@ -146,7 +146,7 @@ typedef vector<DividedPoint> DividedSegmentStack;
 vector<pair<Point, Point> > get_pairs_from_stack(const DividedSegmentStack& points_stack) {
   vector<pair<Point, Point> > pairs;
 
-  for(int i=1; i<points_stack.size(); ++i) {
+  for(int i=points_stack.size()-1; i>=1; --i) {
     pairs.push_back(make_pair(points_stack[i-1].first, points_stack[i].first));
   }
 
