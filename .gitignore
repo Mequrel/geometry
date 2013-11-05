@@ -1,5 +1,6 @@
 *.o
 *.out
 *.png
+*.gif
 lab4/classify
 lab4/lab4

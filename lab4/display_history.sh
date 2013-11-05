@@ -12,8 +12,11 @@ triangles=$(($lines/3))
 for i in `seq 1 $triangles`; do 
   head -n $(($i * 3)) gp-test-full.out > gp-test.out
   gnuplot < display2.gnuplot
-  mv gp-test.png $TEST\_history/$i.png
+  filename=`printf %03d $i`
+  mv gp-test.png $TEST\_history/$filename.png
 done
+
+convert -delay 100 -loop 0 $TEST\_history/*.png $TEST\_history/history.gif
 
 rm gp-test.out
 rm gp-test-full.out
