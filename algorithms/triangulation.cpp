@@ -200,7 +200,7 @@ vector<Polygon> triangulate_y_monotonic(const Polygon& polygon) {
       points_stack.push_back(dpoint);
     }
     else {
-      vector<pair<Point, Point> > pairs = get_pairs_from_stack(points_stack);
+      vector<pair<Point, Point>> pairs = get_pairs_from_stack(points_stack);
       DividedPoint last_popped = points_stack.back();
       points_stack.pop_back();
       for(int i=0; i<pairs.size(); ++i) {
