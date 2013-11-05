@@ -1,0 +1,4 @@
+Udało się zaimplementować klasyfikacje (jeszcze bez wizualizacji) oraz triangulacje.
+Triangulacja ma jeszcze problemy z odcinaniem (3 wierzchołki pod rząd po tej samej stronie).
+
+Podział na dwie części wielokąta jest dokonywany za pomocą schodzenia w dół do oporu.

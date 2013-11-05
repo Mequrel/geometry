@@ -49,10 +49,10 @@ string to_printable(const core::Point point) {
 string to_printable(const vector<Polygon> polygons) {
   stringstream result;
 
-  result << polygons.size() << endl;
+  //result << polygons.size() << endl;
   // TODO(mequrel): change to foreach
   for(int i=0; i<polygons.size(); ++i) {
-    result << util::to_printable(polygons[i]) << endl;
+    result << util::to_printable(polygons[i]);
   }
 
   return result.str();
@@ -62,12 +62,20 @@ string to_printable(const Polygon polygon) {
   stringstream result;
 
   //result << (polygon.size() + 1) << endl;
-  result << polygon.size() << endl;
+  //result << polygon.size() << endl;
   // TODO(mequrel): change to foreach
-  for(int i=0; i<polygon.size(); ++i) {
-    result << util::to_printable(polygon[i]) << endl;
+  for(int i=1; i<polygon.size(); ++i) {
+    core::Segment segment = core::Segment(polygon[i-1], polygon[i]);
+    result << util::to_printable(segment) << endl;
   }
 
+  if(polygon.size() > 1) {
+    core::Segment segment = core::Segment(polygon[polygon.size()-1], polygon[0]);
+    result << util::to_printable(segment) << endl; 
+  }
+
+//    result << util::to_printable(polygon[i]) << endl;
+  
   //if(polygon.size() > 0) {
   //  result << util::to_printable(polygon[0]) << endl;
   //}
